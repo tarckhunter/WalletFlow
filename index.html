@@ -18,222 +18,61 @@
             --text-sub: #64748b;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Kanit', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Kanit', sans-serif; }
 
-        body {
-            background: var(--bg-body);
-            color: var(--text-main);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
+        body { background: var(--bg-body); color: var(--text-main); min-height: 100vh; line-height: 1.6; }
 
-        /* Layout Structure */
-        .app-shell {
-            display: grid;
-            grid-template-columns: 360px 1fr;
-            min-height: 100vh;
-            max-width: 1440px;
-            margin: 0 auto;
-            background: var(--bg-body);
-        }
+        .app-shell { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1440px; margin: 0 auto; }
 
-        /* Left Sidebar: Form */
-        .sidebar {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-right: 1px solid #e2e8f0;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .form-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-sub);
-            margin-bottom: 0.5rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #f1f5f9;
-            border-radius: 12px;
-            background: #f8fafc;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-        }
-
-        .btn-stack {
-            display: grid;
-            gap: 10px;
-            margin-top: 1rem;
-        }
-
-        .btn {
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            color: white;
-        }
-
+        /* Sidebar */
+        .sidebar { background: var(--card-bg); padding: 2.5rem; border-right: 1px solid #e2e8f0; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 2rem; }
+        .brand { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .input-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-sub); margin-bottom: 0.5rem; }
+        input { width: 100%; padding: 14px; border: 2px solid #f1f5f9; border-radius: 12px; background: #f8fafc; font-size: 1rem; transition: 0.2s; margin-bottom: 1rem; }
+        input:focus { outline: none; border-color: var(--primary); background: #fff; }
+        
+        .btn-stack { display: grid; gap: 10px; }
+        .btn { border: none; padding: 14px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; color: white; }
         .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
-        .btn:active { transform: translateY(0); }
         .btn-inc { background: var(--success); }
         .btn-nee { background: var(--danger); }
         .btn-wan { background: var(--warning); }
+        .btn-receipt { background: white; color: var(--text-main); border: 2px solid #e2e8f0; margin-top: 10px; }
 
-        /* Right Content: Dashboard */
-        .content {
-            padding: 2.5rem;
-            overflow-y: auto;
-        }
+        /* Dashboard Content */
+        .content { padding: 2.5rem; }
+        .top-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--card-bg); padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .stat-label { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; }
+        .stat-value { font-size: 1.75rem; font-weight: 700; }
 
-        .top-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
+        .history-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .list-box { background: var(--card-bg); border-radius: 20px; padding: 1.5rem; }
+        .item { display: flex; justify-content: space-between; padding: 12px; background: #f8fafc; border-radius: 12px; margin-bottom: 10px; border-left: 4px solid #e2e8f0; }
+        .del-btn { color: #cbd5e1; cursor: pointer; margin-left: 10px; }
 
-        .stat-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
+        /* Receipt Modal Styles */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
+        .receipt-card { background: white; width: 350px; padding: 40px 30px; border-radius: 2px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; color: #333; }
+        .receipt-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: linear-gradient(90deg, var(--primary), var(--success)); }
+        .receipt-header { text-align: center; margin-bottom: 30px; }
+        .receipt-divider { border-top: 1px dashed #ccc; margin: 15px 0; }
+        .receipt-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+        .receipt-total { display: flex; justify-content: space-between; margin-top: 20px; font-size: 1.2rem; font-weight: 700; border-top: 2px solid #333; padding-top: 10px; }
+        .close-modal { position: absolute; top: -40px; right: 0; color: white; cursor: pointer; font-size: 1.5rem; }
 
-        .stat-card:hover { transform: scale(1.02); }
-        .stat-label { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; text-transform: uppercase; }
-        .stat-value { font-size: 1.75rem; font-weight: 700; margin-top: 5px; }
-
-        .advice-banner {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
-        }
-
-        .history-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .list-box {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-
-        .list-title {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
-            background: #f8fafc;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            border-left: 4px solid #e2e8f0;
-            animation: slideIn 0.3s ease forwards;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .item.inc { border-left-color: var(--success); }
-        .item.nee { border-left-color: var(--danger); }
-        .item.wan { border-left-color: var(--warning); }
-
-        .item-info b { display: block; font-size: 0.95rem; }
-        .item-info small { color: var(--text-sub); font-size: 0.75rem; }
-        .item-val { display: flex; align-items: center; gap: 12px; font-weight: 700; }
-
-        .del-btn {
-            color: #cbd5e1;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .del-btn:hover { color: var(--danger); }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .app-shell { grid-template-columns: 1fr; }
-            .sidebar { height: auto; position: relative; border-right: none; }
-            .top-stats { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1024px) { .app-shell { grid-template-columns: 1fr; } .sidebar { height: auto; position: relative; } }
     </style>
 </head>
 <body>
 
 <div class="app-shell">
     <aside class="sidebar">
-        <div class="brand">
-            <i class="fas fa-vault"></i>
-            <span>WalletFlow</span>
-        </div>
-
+        <div class="brand"><i class="fas fa-vault"></i> WalletFlow</div>
         <div class="form-section">
             <div class="input-group">
                 <label>รายการ</label>
-                <input type="text" id="desc" placeholder="ระบุสิ่งที่ซื้อ หรือรายรับ">
+                <input type="text" id="desc" placeholder="ระบุรายการ...">
             </div>
             <div class="input-group">
                 <label>จำนวนเงิน (บาท)</label>
@@ -243,78 +82,65 @@
                 <label>วันที่</label>
                 <input type="date" id="date">
             </div>
-
             <div class="btn-stack">
-                <button class="btn btn-inc" onclick="save('income')"><i class="fas fa-plus-circle"></i> รายรับ</button>
-                <button class="btn btn-nee" onclick="save('need')"><i class="fas fa-shopping-basket"></i> จำเป็น (Need)</button>
-                <button class="btn btn-wan" onclick="save('want')"><i class="fas fa-heart"></i> ตามใจ (Want)</button>
+                <button class="btn btn-inc" onclick="save('income')">รายรับ</button>
+                <button class="btn btn-nee" onclick="save('need')">จำเป็น (Need)</button>
+                <button class="btn btn-wan" onclick="save('want')">ตามใจ (Want)</button>
+                <button class="btn btn-receipt" onclick="showReceipt()"><i class="fas fa-file-invoice-dollar"></i> สรุปใบเสร็จ</button>
             </div>
         </div>
     </aside>
 
     <main class="content">
         <div class="top-stats">
-            <div class="stat-card">
-                <div class="stat-label">เงินคงเหลือ</div>
-                <div class="stat-value" id="v-bal" style="color: var(--primary)">฿0</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">รายรับสะสม</div>
-                <div class="stat-value" id="v-inc" style="color: var(--success)">฿0</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">รายจ่ายสะสม</div>
-                <div class="stat-value" id="v-exp" style="color: var(--danger)">฿0</div>
-            </div>
+            <div class="stat-card"><div class="stat-label">เงินคงเหลือ</div><div class="stat-value" id="v-bal">฿0</div></div>
+            <div class="stat-card"><div class="stat-label">รายรับ</div><div class="stat-value" id="v-inc">฿0</div></div>
+            <div class="stat-card"><div class="stat-label">รายจ่าย</div><div class="stat-value" id="v-exp">฿0</div></div>
         </div>
-
-        <div class="advice-banner">
-            <i class="fas fa-wand-magic-sparkles" style="font-size: 2rem;"></i>
-            <div>
-                <div style="font-weight: 700; font-size: 1.1rem;">Financial Analysis</div>
-                <p id="v-adv" style="opacity: 0.9; font-size: 0.9rem;">ยินดีต้อนรับ! เริ่มจดบันทึกเพื่อดูการวิเคราะห์ของคุณ</p>
-            </div>
-        </div>
-
         <div class="history-section">
-            <div class="list-box">
-                <div class="list-title" style="color: var(--success)"><i class="fas fa-arrow-up"></i> รายรับ</div>
-                <div id="l-inc"></div>
-            </div>
-            <div class="list-box">
-                <div class="list-title" style="color: var(--danger)"><i class="fas fa-cart-shopping"></i> สิ่งที่จำเป็น</div>
-                <div id="l-nee"></div>
-            </div>
-            <div class="list-box">
-                <div class="list-title" style="color: var(--warning)"><i class="fas fa-star"></i> สิ่งที่อยากได้</div>
-                <div id="l-wan"></div>
-            </div>
+            <div class="list-box"><h4>รายรับ</h4><div id="l-inc"></div></div>
+            <div class="list-box"><h4>Need</h4><div id="l-nee"></div></div>
+            <div class="list-box"><h4>Want</h4><div id="l-wan"></div></div>
         </div>
     </main>
 </div>
 
+<div class="modal-overlay" id="receiptModal">
+    <div class="receipt-card">
+        <span class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></span>
+        <div class="receipt-header">
+            <h2>WalletFlow</h2>
+            <p id="r-date"></p>
+            <p style="font-size: 0.7rem; color: #888;">DAILY SUMMARY REPORT</p>
+        </div>
+        <div class="receipt-divider"></div>
+        <div id="r-items"></div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-row"><span>รายรับรวม:</span><span id="r-total-inc"></span></div>
+        <div class="receipt-row"><span>รายจ่ายรวม:</span><span id="r-total-exp"></span></div>
+        <div class="receipt-total"><span>ยอดคงเหลือ:</span><span id="r-final"></span></div>
+        <div style="text-align: center; margin-top: 30px; font-size: 0.7rem; color: #888;">
+            <p>บันทึกช่วยจำเพื่อวินัยทางการเงินที่ดี</p>
+            <p>*** ขอบคุณที่ไว้วางใจ ***</p>
+        </div>
+    </div>
+</div>
+
 <script>
     let db = JSON.parse(localStorage.getItem('wf_data')) || { income: [], need: [], want: [] };
-
-    // เช็ควันใหม่ (ถ้าต้องการให้ล้างข้อมูลทุกวัน)
     const today = new Date().toDateString();
     if (localStorage.getItem('wf_date') !== today) {
         db = { income: [], need: [], want: [] };
         localStorage.setItem('wf_date', today);
     }
-
     document.getElementById('date').valueAsDate = new Date();
 
     function save(type) {
         const desc = document.getElementById('desc').value;
         const amt = parseFloat(document.getElementById('amt').value);
-        const date = document.getElementById('date').value;
-
-        if (!desc || !amt) return alert('กรุณากรอกข้อมูลให้ครบครับ');
-
-        db[type].push({ id: Date.now(), desc, amt, date });
+        if (!desc || !amt) return alert('กรอกข้อมูลไม่ครบ');
+        db[type].push({ id: Date.now(), desc, amt, date: document.getElementById('date').value });
         localStorage.setItem('wf_data', JSON.stringify(db));
-        
         document.getElementById('desc').value = '';
         document.getElementById('amt').value = '';
         update();
@@ -328,54 +154,41 @@
 
     function update() {
         const sum = (arr) => arr.reduce((a, b) => a + b.amt, 0);
-        const totalInc = sum(db.income);
-        const totalNee = sum(db.need);
-        const totalWan = sum(db.want);
-        const totalExp = totalNee + totalWan;
-        const bal = totalInc - totalExp;
+        const inc = sum(db.income), nee = sum(db.need), wan = sum(db.want);
+        const exp = nee + wan, bal = inc - exp;
 
-        // Stats Animation
-        document.getElementById('v-inc').innerText = `฿${totalInc.toLocaleString()}`;
-        document.getElementById('v-exp').innerText = `฿${totalExp.toLocaleString()}`;
+        document.getElementById('v-inc').innerText = `฿${inc.toLocaleString()}`;
+        document.getElementById('v-exp').innerText = `฿${exp.toLocaleString()}`;
         document.getElementById('v-bal').innerText = `฿${bal.toLocaleString()}`;
         document.getElementById('v-bal').style.color = bal < 0 ? 'var(--danger)' : 'var(--primary)';
 
-        // Lists
-        render('income', 'l-inc', 'inc');
-        render('need', 'l-nee', 'nee');
-        render('want', 'l-wan', 'wan');
+        const render = (type, elId) => {
+            const box = document.getElementById(elId);
+            box.innerHTML = db[type].map(i => `<div class="item"><div><b>${i.desc}</b></div><div>฿${i.amt.toLocaleString()}<i class="fas fa-times del-btn" onclick="remove('${type}', ${i.id})"></i></div></div>`).reverse().join('') || '<p style="font-size:0.8rem;color:#ccc">ไม่มีรายการ</p>';
+        };
+        render('income', 'l-inc'); render('need', 'l-nee'); render('want', 'l-wan');
+    }
 
-        // Advice
-        let adv = "คุณจัดการเงินได้ดีมากครับ รักษาระดับนี้ไว้!";
-        if (totalInc === 0) adv = "เริ่มบันทึกรายได้แรกของวัน เพื่อเริ่มการวิเคราะห์ครับ";
-        else if (bal < 0) adv = "ระวัง! ตอนนี้คุณใช้จ่ายเกินรายรับแล้ว ลองพิจารณาลดหมวด Want ดูครับ";
-        else if (totalNee > totalInc * 0.5) adv = "ค่าใช้จ่ายจำเป็นค่อนข้างสูง (เกิน 50%) ลองเช็คว่ามีส่วนไหนลดได้ไหม";
+    function showReceipt() {
+        const sum = (arr) => arr.reduce((a, b) => a + b.amt, 0);
+        const inc = sum(db.income), nee = sum(db.need), wan = sum(db.want), exp = nee + wan;
         
-        document.getElementById('v-adv').innerText = adv;
+        document.getElementById('r-date').innerText = new Date().toLocaleDateString('th-TH', { dateStyle: 'long' });
+        document.getElementById('r-total-inc').innerText = `฿${inc.toLocaleString()}`;
+        document.getElementById('r-total-exp').innerText = `฿${exp.toLocaleString()}`;
+        document.getElementById('r-final').innerText = `฿${(inc - exp).toLocaleString()}`;
+
+        let html = '';
+        if (nee > 0) html += `<div class="receipt-row"><b>Need (จำเป็น)</b> <span>฿${nee.toLocaleString()}</span></div>`;
+        if (wan > 0) html += `<div class="receipt-row"><b>Want (ตามใจ)</b> <span>฿${wan.toLocaleString()}</span></div>`;
+        document.getElementById('r-items').innerHTML = html || '<p style="text-align:center">ไม่มีรายการรายจ่าย</p>';
+
+        document.getElementById('receiptModal').style.display = 'flex';
     }
 
-    function render(type, elId, cls) {
-        const box = document.getElementById(elId);
-        if (db[type].length === 0) {
-            box.innerHTML = `<div style="text-align:center; color:#cbd5e1; font-size:0.8rem; margin:20px 0;">ไม่มีรายการ</div>`;
-            return;
-        }
-        box.innerHTML = db[type].map(i => `
-            <div class="item ${cls}">
-                <div class="item-info">
-                    <b>${i.desc}</b>
-                    <small>${new Date(i.date).toLocaleDateString('th-TH')}</small>
-                </div>
-                <div class="item-val">
-                    ฿${i.amt.toLocaleString()}
-                    <i class="fas fa-times-circle del-btn" onclick="remove('${type}', ${i.id})"></i>
-                </div>
-            </div>
-        `).reverse().join('');
-    }
+    function closeModal() { document.getElementById('receiptModal').style.display = 'none'; }
 
     update();
 </script>
-
 </body>
 </html>
