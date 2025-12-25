@@ -19,66 +19,73 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Kanit', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg-body); color: var(--text-main); min-height: 100vh; line-height: 1.5; }
+        body { background: var(--bg-body); color: var(--text-main); min-height: 100vh; line-height: 1.6; }
 
-        .app-shell { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1440px; margin: 0 auto; }
+        .app-shell { display: grid; grid-template-columns: 350px 1fr; min-height: 100vh; max-width: 1440px; margin: 0 auto; }
 
-        /* Sidebar & Navigation */
-        .sidebar { background: var(--card-bg); padding: 2rem; border-right: 1px solid #e2e8f0; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 1.5rem; overflow-y: auto; }
+        /* Sidebar สำหรับ Desktop */
+        .sidebar { background: var(--card-bg); padding: 2.5rem; border-right: 1px solid #e2e8f0; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 2rem; }
         .brand { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
         
-        /* Form Inputs */
-        .input-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-sub); margin-bottom: 0.4rem; }
-        input { width: 100%; padding: 12px 15px; border: 2px solid #f1f5f9; border-radius: 12px; background: #f8fafc; font-size: 1rem; transition: 0.2s; margin-bottom: 0.8rem; border-color: transparent; }
-        input:focus { outline: none; border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
-        
-        .btn-stack { display: grid; gap: 8px; }
-        .btn { border: none; padding: 14px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; color: white; font-size: 0.95rem; }
+        .input-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-sub); margin-bottom: 0.5rem; }
+        input { width: 100%; padding: 14px; border: 2px solid #f1f5f9; border-radius: 12px; background: #f8fafc; font-size: 1rem; transition: 0.2s; margin-bottom: 10px; }
+        input:focus { outline: none; border-color: var(--primary); background: #fff; }
+
+        .btn-stack { display: grid; gap: 10px; }
+        .btn { border: none; padding: 14px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; color: white; transition: 0.2s; }
         .btn:active { transform: scale(0.98); }
         .btn-inc { background: var(--success); }
         .btn-nee { background: var(--danger); }
         .btn-wan { background: var(--warning); }
-        .btn-receipt { background: white; color: var(--text-main); border: 2px solid #e2e8f0; margin-top: 5px; }
+        .btn-receipt { background: white; color: var(--text-main); border: 2px solid #e2e8f0; }
 
-        /* Dashboard Content */
-        .content { padding: 2rem; }
-        .top-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
-        .stat-card { background: var(--card-bg); padding: 1.25rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); text-align: center; }
-        .stat-label { font-size: 0.75rem; color: var(--text-sub); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-value { font-size: 1.25rem; font-weight: 700; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* Content Area */
+        .content { padding: 2rem; overflow-x: hidden; }
 
-        /* History Lists */
+        /* ปรับปรุง Top Stats ให้รองรับมือถือ */
+        .top-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .stat-card { background: var(--card-bg); padding: 1.25rem; border-radius: 18px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .stat-label { font-size: 0.75rem; color: var(--text-sub); font-weight: 600; text-transform: uppercase; }
+        .stat-value { font-size: 1.25rem; font-weight: 700; margin-top: 5px; white-space: nowrap; }
+
+        .advice-banner { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: white; padding: 1.25rem; border-radius: 18px; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+
         .history-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .list-box { background: var(--card-bg); border-radius: 20px; padding: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .list-box h4 { margin-bottom: 1rem; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+        .list-box { background: var(--card-bg); border-radius: 20px; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .list-title { font-size: 1rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px; }
 
-        .item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8fafc; border-radius: 12px; margin-bottom: 8px; border-left: 5px solid #e2e8f0; }
+        .item { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: #f8fafc; border-radius: 12px; margin-bottom: 8px; border-left: 5px solid #e2e8f0; }
         .item.inc { border-left-color: var(--success); }
         .item.nee { border-left-color: var(--danger); }
         .item.wan { border-left-color: var(--warning); }
-        .item-info b { display: block; font-size: 0.9rem; }
-        .item-info small { color: var(--text-sub); font-size: 0.7rem; }
-        .item-val { font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
-        .del-btn { color: #cbd5e1; cursor: pointer; padding: 5px; }
 
         /* Receipt Modal */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-        .receipt-card { background: white; width: 100%; max-width: 340px; padding: 30px 20px; border-radius: 4px; position: relative; color: #333; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 1000; justify-content: center; align-items: center; padding: 15px; }
+        .receipt-card { background: white; width: 100%; max-width: 350px; padding: 35px 25px; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; color: #333; }
         .receipt-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--primary), var(--success)); }
-        .receipt-header { text-align: center; margin-bottom: 20px; }
-        .receipt-divider { border-top: 1px dashed #ddd; margin: 12px 0; }
-        .receipt-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem; }
-        .receipt-total { display: flex; justify-content: space-between; margin-top: 15px; font-size: 1.1rem; font-weight: 700; border-top: 2px solid #333; padding-top: 8px; }
-        .close-modal { position: absolute; top: -50px; right: 0; color: white; cursor: pointer; font-size: 2rem; }
+        .receipt-header { text-align: center; margin-bottom: 25px; }
+        .receipt-divider { border-top: 1px dashed #ccc; margin: 15px 0; }
+        .receipt-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; }
+        .receipt-total { display: flex; justify-content: space-between; margin-top: 15px; font-size: 1.2rem; font-weight: 700; border-top: 2px solid #333; padding-top: 10px; }
+        .close-modal { position: absolute; top: -45px; right: 0; color: white; cursor: pointer; font-size: 1.8rem; }
 
-        /* Mobile Specific Adjustments */
+        /* Responsive สำหรับมือถือโดยเฉพาะ */
         @media (max-width: 1024px) {
             .app-shell { grid-template-columns: 1fr; }
-            .sidebar { height: auto; position: relative; border-right: none; padding: 1.5rem; border-bottom: 1px solid #e2e8f0; }
+            .sidebar { height: auto; position: relative; padding: 1.5rem; border-right: none; border-bottom: 1px solid #e2e8f0; }
             .content { padding: 1.25rem; }
-            .top-stats { gap: 0.6rem; }
-            .stat-card { padding: 1rem 0.5rem; }
-            .stat-value { font-size: 1rem; }
+            
+            /* ทำให้สถิติเลื่อนข้างได้ถ้าหน้าจอแคบมาก */
+            .top-stats { 
+                overflow-x: auto; 
+                display: flex; 
+                padding-bottom: 10px;
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+            }
+            .top-stats::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+            .stat-card { min-width: 140px; flex: 1; }
+            .stat-value { font-size: 1.1rem; }
+
             .history-section { grid-template-columns: 1fr; }
         }
     </style>
@@ -91,7 +98,7 @@
         <div class="form-section">
             <div class="input-group">
                 <label>รายการ</label>
-                <input type="text" id="desc" placeholder="เช่น ค่าข้าว, นำส่งเงิน" enterkeyhint="next">
+                <input type="text" id="desc" placeholder="เช่น ค่าอาหาร, เงินเดือน">
             </div>
             <div class="input-group">
                 <label>จำนวนเงิน (บาท)</label>
@@ -102,10 +109,10 @@
                 <input type="date" id="date">
             </div>
             <div class="btn-stack">
-                <button class="btn btn-inc" onclick="save('income')"><i class="fas fa-plus"></i> รายรับ</button>
+                <button class="btn btn-inc" onclick="save('income')"><i class="fas fa-plus-circle"></i> รายรับ</button>
                 <button class="btn btn-nee" onclick="save('need')"><i class="fas fa-shopping-cart"></i> จำเป็น</button>
                 <button class="btn btn-wan" onclick="save('want')"><i class="fas fa-gift"></i> ตามใจ</button>
-                <button class="btn btn-receipt" onclick="showReceipt()"><i class="fas fa-file-invoice"></i> สรุปใบเสร็จ</button>
+                <button class="btn btn-receipt" onclick="showReceipt()"><i class="fas fa-file-invoice-dollar"></i> สรุปใบเสร็จ</button>
             </div>
         </div>
     </aside>
@@ -114,21 +121,38 @@
         <div class="top-stats">
             <div class="stat-card">
                 <div class="stat-label">คงเหลือ</div>
-                <div class="stat-value" id="v-bal" style="color: var(--primary)">฿0</div>
+                <div id="v-bal" class="stat-value" style="color: var(--primary)">฿0</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">รายรับ</div>
-                <div class="stat-value" id="v-inc" style="color: var(--success)">฿0</div>
+                <div id="v-inc" class="stat-value" style="color: var(--success)">฿0</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">รายจ่าย</div>
-                <div class="stat-value" id="v-exp" style="color: var(--danger)">฿0</div>
+                <div id="v-exp" class="stat-value" style="color: var(--danger)">฿0</div>
             </div>
         </div>
+
+        <div class="advice-banner">
+            <i class="fas fa-magic" style="font-size: 1.5rem;"></i>
+            <div>
+                <p id="v-adv" style="font-size: 0.85rem; font-weight: 500;">เริ่มบันทึกรายการแรกของวันได้เลยครับ!</p>
+            </div>
+        </div>
+
         <div class="history-section">
-            <div class="list-box"><h4 style="color: var(--success)"><i class="fas fa-arrow-up"></i> รายรับ</h4><div id="l-inc"></div></div>
-            <div class="list-box"><h4 style="color: var(--danger)"><i class="fas fa-minus-circle"></i> Need</h4><div id="l-nee"></div></div>
-            <div class="list-box"><h4 style="color: var(--warning)"><i class="fas fa-grin-hearts"></i> Want</h4><div id="l-wan"></div></div>
+            <div class="list-box">
+                <div class="list-title" style="color: var(--success)"><i class="fas fa-arrow-up"></i> รายรับ</div>
+                <div id="l-inc"></div>
+            </div>
+            <div class="list-box">
+                <div class="list-title" style="color: var(--danger)"><i class="fas fa-shopping-basket"></i> จำเป็น</div>
+                <div id="l-nee"></div>
+            </div>
+            <div class="list-box">
+                <div class="list-title" style="color: var(--warning)"><i class="fas fa-star"></i> ตามใจ</div>
+                <div id="l-wan"></div>
+            </div>
         </div>
     </main>
 </div>
@@ -137,17 +161,17 @@
     <div class="receipt-card">
         <span class="close-modal" onclick="closeModal()"><i class="fas fa-times-circle"></i></span>
         <div class="receipt-header">
-            <h2 style="letter-spacing: 2px; font-size: 1.2rem;">WALLETFLOW</h2>
-            <p id="r-date" style="font-size: 0.8rem; margin-top: 4px;"></p>
+            <h2 style="letter-spacing: 1px; font-size: 1.3rem;">WALLETFLOW</h2>
+            <p id="r-date" style="font-size: 0.85rem; margin-top: 5px;"></p>
         </div>
         <div class="receipt-divider"></div>
         <div id="r-items"></div>
         <div class="receipt-divider"></div>
         <div class="receipt-row"><span>รายรับรวม:</span><span id="r-total-inc"></span></div>
         <div class="receipt-row"><span>รายจ่ายรวม:</span><span id="r-total-exp"></span></div>
-        <div class="receipt-total"><span>คงเหลือ:</span><span id="r-final"></span></div>
-        <div style="text-align: center; margin-top: 25px; font-size: 0.65rem; color: #999;">
-            <p>บันทึกเพื่อวินัยการออมที่ดี</p>
+        <div class="receipt-total"><span>ยอดคงเหลือ:</span><span id="r-final"></span></div>
+        <div style="text-align: center; margin-top: 25px; font-size: 0.65rem; color: #999; line-height: 1.4;">
+            <p>บันทึกช่วยจำเพื่อวินัยทางการเงินที่ดี</p>
             <p>ขอบคุณที่ใช้งาน WalletFlow</p>
         </div>
     </div>
@@ -161,24 +185,21 @@
         db = { income: [], need: [], want: [] };
         localStorage.setItem('wf_date', today);
     }
-    
     document.getElementById('date').valueAsDate = new Date();
 
     function save(type) {
         const desc = document.getElementById('desc').value;
         const amt = parseFloat(document.getElementById('amt').value);
-        if (!desc || isNaN(amt)) return alert('กรุณากรอกข้อมูลให้ถูกต้อง');
+        if (!desc || isNaN(amt)) return alert('กรุณากรอกข้อมูลให้ครบถ้วน');
         
         db[type].push({ id: Date.now(), desc, amt, date: document.getElementById('date').value });
         localStorage.setItem('wf_data', JSON.stringify(db));
-        
         document.getElementById('desc').value = '';
         document.getElementById('amt').value = '';
         update();
     }
 
     function remove(type, id) {
-        if(!confirm('ลบรายการนี้ใช่หรือไม่?')) return;
         db[type] = db[type].filter(x => x.id !== id);
         localStorage.setItem('wf_data', JSON.stringify(db));
         update();
@@ -197,32 +218,32 @@
         const render = (type, elId, cls) => {
             const box = document.getElementById(elId);
             if (db[type].length === 0) {
-                box.innerHTML = '<p style="text-align:center; color:#cbd5e1; font-size:0.8rem; margin:10px 0;">ไม่มีรายการ</p>';
+                box.innerHTML = '<p style="text-align:center; color:#cbd5e1; font-size:0.8rem; margin:15px 0;">ไม่มีรายการ</p>';
                 return;
             }
             box.innerHTML = db[type].map(i => `
                 <div class="item ${cls}">
-                    <div class="item-info">
+                    <div style="flex:1">
                         <b>${i.desc}</b>
-                        <small>${new Date(i.date).toLocaleDateString('th-TH')}</small>
+                        <small style="display:block; color:var(--text-sub); font-size:0.7rem">${new Date(i.date).toLocaleDateString('th-TH')}</small>
                     </div>
-                    <div class="item-val">
-                        ฿${i.amt.toLocaleString()}
-                        <i class="fas fa-trash-alt del-btn" onclick="remove('${type}', ${i.id})"></i>
-                    </div>
+                    <div style="font-weight:700; margin-right:10px">฿${i.amt.toLocaleString()}</div>
+                    <i class="fas fa-times-circle" style="color:#cbd5e1; cursor:pointer" onclick="remove('${type}', ${i.id})"></i>
                 </div>
             `).reverse().join('');
         };
 
-        render('income', 'l-inc', 'inc'); 
-        render('need', 'l-nee', 'nee'); 
-        render('want', 'l-wan', 'wan');
+        render('income', 'l-inc', 'inc'); render('need', 'l-nee', 'nee'); render('want', 'l-wan', 'wan');
+
+        let adv = "คุณจัดการเงินได้ดีมากครับ!";
+        if (inc === 0) adv = "เริ่มบันทึกรายได้แรกของวัน เพื่อเริ่มการวิเคราะห์ครับ";
+        else if (bal < 0) adv = "ระวัง! ตอนนี้คุณใช้จ่ายเกินรายรับแล้ว";
+        document.getElementById('v-adv').innerText = adv;
     }
 
     function showReceipt() {
         const sum = (arr) => arr.reduce((a, b) => a + b.amt, 0);
         const inc = sum(db.income), nee = sum(db.need), wan = sum(db.want), exp = nee + wan;
-        
         document.getElementById('r-date').innerText = new Date().toLocaleDateString('th-TH', { dateStyle: 'long' });
         document.getElementById('r-total-inc').innerText = `฿${inc.toLocaleString()}`;
         document.getElementById('r-total-exp').innerText = `฿${exp.toLocaleString()}`;
@@ -231,13 +252,11 @@
         let html = '';
         if (nee > 0) html += `<div class="receipt-row"><b>Need (จำเป็น)</b> <span>฿${nee.toLocaleString()}</span></div>`;
         if (wan > 0) html += `<div class="receipt-row"><b>Want (ตามใจ)</b> <span>฿${wan.toLocaleString()}</span></div>`;
-        document.getElementById('r-items').innerHTML = html || '<p style="text-align:center; padding: 10px; color: #999; font-size:0.8rem;">ไม่มีรายจ่าย</p>';
-
+        document.getElementById('r-items').innerHTML = html || '<p style="text-align:center; padding:10px; color:#999; font-size:0.8rem">ไม่มีรายการรายจ่าย</p>';
         document.getElementById('receiptModal').style.display = 'flex';
     }
 
     function closeModal() { document.getElementById('receiptModal').style.display = 'none'; }
-
     update();
 </script>
 </body>
