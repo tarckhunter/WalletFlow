@@ -43,7 +43,7 @@
         /* Content Area */
         .content { padding: 2.5rem; }
 
-        /* Top Stats: แก้ไขไม่ให้เบียด */
+        /* Top Stats */
         .top-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
         .stat-card { background: var(--card-bg); padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
         .stat-label { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -76,19 +76,14 @@
         .receipt-total { display: flex; justify-content: space-between; margin-top: 20px; font-size: 1.25rem; font-weight: 700; border-top: 2px solid #333; padding-top: 10px; }
         .close-modal { position: absolute; top: -50px; right: 0; color: white; cursor: pointer; font-size: 2.2rem; }
 
-        /* Mobile Adjustments: แก้ไขการเบียดกัน */
         @media (max-width: 768px) {
             .app-shell { grid-template-columns: 1fr; }
             .sidebar { height: auto; position: relative; border-right: none; padding: 1.5rem; border-bottom: 1px solid #e2e8f0; }
             .content { padding: 1.5rem; }
-            
-            /* กล่องสถิติบนมือถือ: ให้แสดงกล่องละบรรทัดเพื่อไม่ให้เบียดกัน */
             .top-stats { grid-template-columns: 1fr; gap: 1rem; }
             .stat-card { padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; }
             .stat-value { margin-top: 0; font-size: 1.5rem; }
-            
             .history-section { grid-template-columns: 1fr; }
-            .advice-banner { padding: 1.2rem; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -100,7 +95,7 @@
         <div class="form-section">
             <div class="input-group">
                 <label>รายการ</label>
-                <input type="text" id="desc" placeholder="ระบุรายการ..." enterkeyhint="next">
+                <input type="text" id="desc" placeholder="เช่น ค่าข้าว, เงินเดือน" enterkeyhint="next">
             </div>
             <div class="input-group">
                 <label>จำนวนเงิน (บาท)</label>
@@ -122,15 +117,15 @@
     <main class="content">
         <div class="top-stats">
             <div class="stat-card">
-                <div class="stat-label">เงินคงเหลือ</div>
+                <div class="stat-label">คงเหลือวันนี้</div>
                 <div id="v-bal" class="stat-value" style="color: var(--primary)">฿0</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">รายรับสะสม</div>
+                <div class="stat-label">รายรับ</div>
                 <div id="v-inc" class="stat-value" style="color: var(--success)">฿0</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">รายจ่ายสะสม</div>
+                <div class="stat-label">รายจ่าย</div>
                 <div id="v-exp" class="stat-value" style="color: var(--danger)">฿0</div>
             </div>
         </div>
@@ -139,7 +134,7 @@
             <i class="fas fa-wand-magic-sparkles" style="font-size: 1.8rem;"></i>
             <div>
                 <div style="font-weight: 700; font-size: 1.1rem;">Financial Analysis</div>
-                <p id="v-adv" style="opacity: 0.9; font-size: 0.9rem;">เริ่มจดบันทึกเพื่อดูการวิเคราะห์ของคุณ</p>
+                <p id="v-adv" style="opacity: 0.9; font-size: 0.9rem;">กำลังโหลดข้อมูล...</p>
             </div>
         </div>
 
@@ -181,22 +176,37 @@
 </div>
 
 <script>
-    let db = JSON.parse(localStorage.getItem('wf_data')) || { income: [], need: [], want: [] };
-    const today = new Date().toDateString();
-    
-    if (localStorage.getItem('wf_date') !== today) {
-        db = { income: [], need: [], want: [] };
-        localStorage.setItem('wf_date', today);
+    // ฟังก์ชันดึงวันที่ปัจจุบันรูปแบบ YYYY-MM-DD (เวลาไทย)
+    function getTodayThai() {
+        const now = new Date();
+        const tzOffset = 7 * 60; // GMT+7
+        const localTime = new Date(now.getTime() + (tzOffset + now.getTimezoneOffset()) * 60000);
+        return localTime.toISOString().split('T')[0];
     }
-    
-    document.getElementById('date').valueAsDate = new Date();
+
+    const todayStr = getTodayThai();
+    let db = JSON.parse(localStorage.getItem('wf_data')) || { income: [], need: [], want: [] };
+
+    // เช็คการขึ้นวันใหม่อย่างเด็ดขาด
+    if (localStorage.getItem('wf_date') !== todayStr) {
+        db = { income: [], need: [], want: [] }; // ล้างข้อมูล
+        localStorage.setItem('wf_data', JSON.stringify(db));
+        localStorage.setItem('wf_date', todayStr);
+    }
+
+    // ตั้งค่าช่องวันที่ให้เป็นวันนี้เสมอ
+    document.getElementById('date').value = todayStr;
 
     function save(type) {
         const desc = document.getElementById('desc').value;
         const amt = parseFloat(document.getElementById('amt').value);
-        if (!desc || !amt) return alert('กรุณากรอกข้อมูลให้ครบครับ');
-        db[type].push({ id: Date.now(), desc, amt, date: document.getElementById('date').value });
+        const selDate = document.getElementById('date').value;
+
+        if (!desc || isNaN(amt)) return alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        
+        db[type].push({ id: Date.now(), desc, amt, date: selDate });
         localStorage.setItem('wf_data', JSON.stringify(db));
+        
         document.getElementById('desc').value = '';
         document.getElementById('amt').value = '';
         update();
